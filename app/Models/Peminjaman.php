@@ -19,6 +19,7 @@ class Peminjaman extends Model
         'tanggal_jatuh_tempo',
         'tanggal_kembali_aktual',
         'status',
+        'total_denda',
     ];
 
     /**

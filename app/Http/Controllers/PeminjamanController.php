@@ -138,16 +138,32 @@ class PeminjamanController extends Controller
                 throw new \Exception("Transaksi ini sudah selesai (buku sudah dikembalikan).");
             }
 
-            // 4. Update "Struk" Peminjaman
+            // --- LOGIKA DENDA DIMULAI DARI SINI ---
+            $totalDenda = 0;
+            $hariIni = Carbon::now();
+            $jatuhTempo = Carbon::parse($peminjaman->tanggal_jatuh_tempo);
+
+            // Cek apakah hari ini LEBIH DARI tanggal jatuh tempo
+            if ($hariIni->isAfter($jatuhTempo)) {
+                // Hitung jumlah hari telatnya
+                $hariTelat = $hariIni->diffInDays($jatuhTempo);
+                
+                // Tentukan tarif denda per hari (misal Rp 1.000)
+                $tarifDendaPerHari = 1000; 
+
+                $totalDenda = $hariTelat * $tarifDendaPerHari;
+            }
+            // --- LOGIKA DENDA SELESAI ---
+
+            // 4. Update "Struk" Peminjaman (MASUKKAN DENDA-nya)
             $peminjaman->update([
                 'status' => 'Selesai',
-                'tanggal_kembali_aktual' => Carbon::now()->toDateString(), // Set tanggal kembali hari ini
+                'tanggal_kembali_aktual' => $hariIni->toDateString(),
+                'total_denda' => $totalDenda, // <-- Simpan dendanya
             ]);
 
             // 5. Kembalikan Stok Setiap Buku
-            // 'bukus' adalah nama function relasi yg kita buat di Model Peminjaman
             foreach ($peminjaman->bukus as $buku) {
-                // 'increment' adalah cara aman buat nambahin stok
                 $buku->increment('jumlah_stok');
             }
 
@@ -161,7 +177,13 @@ class PeminjamanController extends Controller
         }
 
         // 8. Kalo semua sukses, redirect ke index
-        return redirect()->route('peminjaman.index')->with('success', 'Buku telah berhasil dikembalikan!');
+        // Kita tambahin pesan denda kalo emang ada
+        $pesanSukses = 'Buku telah berhasil dikembalikan!';
+        if ($totalDenda > 0) {
+            $pesanSukses .= " Denda keterlambatan: Rp " . number_format($totalDenda, 0, ',', '.');
+        }
+
+        return redirect()->route('peminjaman.index')->with('success', $pesanSukses);
     }
 
     /**

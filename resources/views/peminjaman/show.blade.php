@@ -31,7 +31,8 @@
                             <p class="text-sm text-gray-600 dark:text-gray-400">Tempo: {{ $peminjaman->tanggal_jatuh_tempo }}</p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Kembali: {{ $peminjaman->tanggal_kembali_aktual ?? '-' }}</p>
                         </div>
-                        {{-- Info 3: Status --}}
+                        
+                        {{-- 👇 Info 3: Status & Denda (SUDAH DIUPDATE) 👇 --}}
                         <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow">
                             <h3 class="font-semibold text-lg">Status</h3>
                             @if($peminjaman->status == 'Dipinjam')
@@ -43,6 +44,11 @@
                                     Selesai
                                 </span>
                             @endif
+
+                            <h3 class="font-semibold text-lg mt-4">Total Denda</h3>
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400">
+                                Rp {{ number_format($peminjaman->total_denda, 0, ',', '.') }}
+                            </p>
                         </div>
                     </div>
 
