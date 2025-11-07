@@ -1,59 +1,161 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+  </a>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <h1 align="center">📚 Aplikasi Manajemen Perpustakaan 📚</h1>
 
-## About Laravel
+  <p align="center">
+    Sebuah aplikasi full-stack berbasis Laravel untuk mengelola inventaris buku, keanggotaan, dan transaksi peminjaman di perpustakaan kampus.
+  </p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  <p align="center">
+    <img src="https://img.shields.io/badge/PHP-8.2%2B-blue.svg?style=for-the-badge&logo=php" alt="PHP 8.2+">
+    <img src="https://img.shields.io/badge/Laravel-12.x-red.svg?style=for-the-badge&logo=laravel" alt="Laravel 12.x">
+    <img src="https://img.shields.io/badge/Bun-JS-yellow.svg?style=for-the-badge&logo=bun" alt="Bun">
+    <img src="https://img.shields.io/badge/MySQL-DB-orange.svg?style=for-the-badge&logo=mysql" alt="MySQL">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License: MIT">
+  </p>
+</div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Fitur Utama
 
-## Learning Laravel
+Aplikasi ini mencakup fungsionalitas admin yang lengkap, termasuk:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* **Dashboard Utama:** Menampilkan statistik kunci (Total Buku, Kategori, Rak).
+* **Layout Modern:** *Sidebar* yang *minimizeable* dan *toggle Dark Mode*.
+* **Manajemen Inventaris (Full CRUD):**
+    * Manajemen Buku (termasuk *upload cover*).
+    * Manajemen Kategori.
+    * Manajemen Rak.
+* **Manajemen Keanggotaan (Full CRUD):**
+    * Didesain untuk kampus (NIM/NIDN, Tipe Anggota).
+* **Manajemen Transaksi (Core System):**
+    * Fitur **Peminjaman Buku** (mengurangi stok buku secara otomatis).
+    * Fitur **Pengembalian Buku** (menambah stok buku secara otomatis).
+* **Manajemen Keuangan:**
+    * Perhitungan **Denda Keterlambatan** otomatis saat pengembalian.
+* **Pusat Laporan (6 Jenis):**
+    1.  Laporan Inventaris Buku (dengan filter per kategori).
+    2.  Laporan Data Anggota.
+    3.  Laporan Buku Terpopuler.
+    4.  Laporan Anggota Teraktif.
+    5.  Laporan Pemasukan Denda.
+    6.  Laporan Keterlambatan (Buku yang belum kembali & telat).
+* **Validasi Data:** Mencegah penghapusan data master (Kategori, Rak, Anggota) jika masih terkait dengan data lain.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 1. Prasyarat (Prerequisites)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Pastikan perangkat Anda telah terinstal perangkat lunak berikut:
 
-### Premium Partners
+* **Server Lokal:** XAMPP, MAMP, atau Laragon (yang menyertakan PHP, MySQL, dan phpMyAdmin).
+* **Composer:** *Dependency manager* untuk PHP.
+* **Bun** (atau **NPM** / **Yarn**): *Package manager* untuk JavaScript.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 2. ⚙️ Langkah-langkah Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ikuti langkah-langkah berikut secara berurutan.
 
-## Code of Conduct
+### Langkah 1: Ekstrak Proyek
+Ekstrak file `.zip` proyek ini ke direktori kerja Anda (misalnya, `htdocs` di XAMPP atau folder proyek kustom Anda).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Langkah 2: Konfigurasi Database (Import)
 
-## Security Vulnerabilities
+Proyek ini menggunakan *database dump* (`.sql`) yang sudah berisi data. Anda **tidak perlu** menjalankan `php artisan migrate`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1.  Jalankan server lokal (XAMPP/MAMP). Pastikan **MySQL** sudah berjalan.
+2.  Buka **phpMyAdmin**.
+3.  Buat *database* baru dengan nama persis: <strong>`proyek_perpus`</strong>. (Pastikan *collation* diatur ke `utf8mb4_general_ci`).
+4.  Buka *database* `proyek_perpus` yang baru saja Anda buat.
+5.  Klik *tab* **"Import"**.
+6.  Klik **"Choose File"** dan pilih file **`proyek_perpus.sql`** yang disertakan bersama proyek ini.
+7.  Klik tombol **"Import"** (atau "Go") di bagian bawah halaman.
 
-## License
+> **Penting:** Setelah proses impor selesai, *database* Anda sudah siap dengan semua tabel dan data yang diperlukan.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Langkah 3: Konfigurasi Environment (`.env`)
+
+File `.env` berisi konfigurasi koneksi *database* dan *key* aplikasi.
+
+1.  Di dalam folder proyek, buka file **`.env`** (file ini sudah disertakan).
+2.  Temukan dan sesuaikan bagian konfigurasi *database* (`DB_...`) agar sesuai dengan pengaturan server lokal (XAMPP/MAMP) Anda:
+
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=8889
+    DB_DATABASE=proyek_perpus
+    DB_USERNAME=root
+    DB_PASSWORD=root
+    ```
+
+3.  **Perhatian:**
+    * **Jika menggunakan XAMPP:** `DB_PORT` biasanya **`3306`** dan `DB_PASSWORD` biasanya **kosong** (contoh: `DB_PASSWORD=`).
+    * **Jika menggunakan MAMP:** Pengaturan di atas (Port `8889`, Password `root`) biasanya sudah benar.
+
+### Langkah 4: Instalasi Dependensi
+
+Buka Terminal atau Command Prompt di dalam direktori utama proyek.
+
+1.  Jalankan perintah berikut untuk menginstal semua *library* PHP (membuat folder `vendor/`):
+    ```bash
+    composer install
+    ```
+
+2.  Jalankan perintah berikut untuk menginstal semua *library* JavaScript (membuat folder `node_modules/`):
+    ```bash
+    bun install
+    ```
+
+### Langkah 5: Finalisasi Proyek
+
+Setelah dependensi terinstal, jalankan dua perintah terakhir ini:
+
+1.  Buat *symlink* agar file *cover* buku yang di-*upload* bisa diakses oleh publik:
+    ```bash
+    php artisan storage:link
+    ```
+
+2.  *Compile* (kompilasi) file CSS dan JavaScript untuk mode produksi:
+    ```bash
+    bun run build
+    ```
+    > **Catatan:** Aplikasi ini dirancang untuk berjalan pada mode produksi (setelah di-*build*). Menjalankan `bun run dev` (mode *development*) tidak diperlukan dan dapat menyebabkan *glitch* tampilan pada beberapa *environment*.
+
+---
+
+## 3. 🚀 Menjalankan Aplikasi
+
+Setelah semua langkah instalasi selesai, aplikasi siap dijalankan.
+
+1.  Di terminal Anda, jalankan server *development* Laravel:
+    ```bash
+    php artisan serve
+    ```
+
+2.  Buka *browser* Anda dan akses alamat:
+    <h3><a href="http://localhost:8000">http://localhost:8000</a></h3>
+
+Aplikasi akan otomatis mengarahkan Anda ke halaman *login*.
+
+---
+
+## 4. 🔑 Akun Admin Bawaan
+
+Anda dapat *login* menggunakan akun *administrator* bawaan yang telah disiapkan di *database*:
+
+| Email | Password |
+| :--- | :--- |
+| `admin@admin.com` | `Admin123` |
+
+---
+
+<div align="center">
+  <p>Proyek ini dilisensikan di bawah <a href="LICENSE">Lisensi MIT</a>.</p>
+</div>
