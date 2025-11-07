@@ -34,18 +34,19 @@
                 background-color: theme('colors.gray.700');
                 color: theme('colors.white');
             }
+
             .sidebar-link.active {
-                background-color: theme('colors.indigo.50');
-                color: theme('colors.indigo.600');
-                border-left-width: 4px;
-                border-color: theme('colors.indigo.500');
-                padding-left: 0.75rem; /* px-3 */
+                background-color: theme('colors.indigo.600'); /* Jadi biru solid */
+                color: theme('colors.white'); /* Tulisan jadi putih */
+                border-left-width: 0px; /* Garisnya kita hapus, ganti background */
+                padding-left: 1rem;
             }
             .sidebar-link.active.dark {
-                background-color: theme('colors.gray.900');
-                color: theme('colors.indigo.400');
-                border-color: theme('colors.indigo.400');
+                background-color: theme('colors.indigo.500'); /* Versi dark mode */
+                color: theme('colors.white'); /* Tulisan tetep putih */
+                border-left-width: 0px;
             }
+            /* --- ------------------------------------- --- */
 
             /* Style tambahan untuk mode minimize */
             .sidebar-minimized .sidebar-link {
@@ -54,10 +55,9 @@
                 padding-right: 0.5rem;
             }
             .sidebar-minimized .sidebar-link.active {
-                /* Saat minimize, border kiri geser jadi border kanan */
-                border-left-width: 0;
-                border-right-width: 4px;
+                /* Saat minimize, kita tetep pake background aja */
                 padding-left: 0.5rem;
+                border-left-width: 0;
             }
             .sidebar-minimized .sidebar-link .sidebar-text {
                 /* Sembunyikan teks */
@@ -65,7 +65,7 @@
                 display: none;
             }
             
-            /* Class baru untuk styling dropdown laporan */
+            /* Class baru untuk styling dropdown laporan (BIARIN AJA) */
             .sidebar-dropdown-trigger {
                 display: flex;
                 align-items: center;

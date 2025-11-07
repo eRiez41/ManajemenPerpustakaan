@@ -98,13 +98,20 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        // 1. Cari data berdasarkan ID
-        $kategori = Kategori::findOrFail($id);
+        // 1. Cari data, tapi 'withCount' untuk ngitung "anak"-nya (bukus)
+        $kategori = Kategori::withCount('bukus')->findOrFail($id);
 
-        // 2. Hapus data dari database
+        // 2. CEK PENJAGA: Kategori ini masih dipake di buku nggak?
+        if ($kategori->bukus_count > 0) {
+            // Kalo masih ada, GAGALKAN HAPUS dan kirim pesan error
+            return redirect()->route('kategori.index')
+                             ->with('error', 'Gagal! Kategori ini masih digunakan oleh ' . $kategori->bukus_count . ' buku.');
+        }
+
+        // 3. Kalo aman (bukus_count = 0), baru hapus
         $kategori->delete();
 
-        // 3. Redirect ke halaman index dengan notifikasi sukses
+        // 4. Redirect ke halaman index dengan notifikasi sukses
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus!');
     }
 }

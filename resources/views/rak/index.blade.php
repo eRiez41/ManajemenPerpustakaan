@@ -22,6 +22,12 @@
                         </div>
                     @endif
 
+                    @if(session('error'))
+                        <div class="mb-4 p-4 bg-red-100 dark:bg-red-900 border border-red-200 dark:border-red-700 text-red-700 dark:text-red-200 rounded-md">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     {{-- TABEL DATA --}}
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-gray-700">

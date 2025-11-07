@@ -96,4 +96,18 @@ class LaporanController extends Controller
 
         return view('laporan.denda', compact('transaksiDenda', 'totalDenda'));
     }
+
+    public function laporanTelat()
+    {
+        // Ambil data peminjaman yang:
+        // 1. Statusnya masih "Dipinjam"
+        // 2. Tanggal jatuh temponya SUDAH LEWAT dari hari ini
+        $peminjamanTelat = Peminjaman::where('status', 'Dipinjam')
+                                     ->where('tanggal_jatuh_tempo', '<', now()->toDateString())
+                                     ->with(['anggota', 'bukus'])
+                                     ->orderBy('tanggal_jatuh_tempo', 'asc') // Urutkan dari yg paling lama telat
+                                     ->get();
+
+        return view('laporan.telat', compact('peminjamanTelat'));
+    }
 }

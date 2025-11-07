@@ -15,10 +15,15 @@
                         Tambah Kategori
                     </a>
 
-                    {{-- 👇 TAMBAHKAN KODE INI DI SINI 👇 --}}
                     @if(session('success'))
                         <div class="mb-4 p-4 bg-green-100 dark:bg-green-900 border border-green-200 dark:border-green-700 text-green-700 dark:text-green-200 rounded-md">
                             {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="mb-4 p-4 bg-red-100 dark:bg-red-900 border border-red-200 dark:border-red-700 text-red-700 dark:text-red-200 rounded-md">
+                            {{ session('error') }}
                         </div>
                     @endif
 

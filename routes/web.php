@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/populer', [LaporanController::class, 'laporanPopuler'])->name('laporan.populer');
     Route::get('/laporan/aktif', [LaporanController::class, 'laporanAktif'])->name('laporan.aktif');
     Route::get('/laporan/denda', [LaporanController::class, 'laporanDenda'])->name('laporan.denda');
+    Route::get('/laporan/telat', [LaporanController::class, 'laporanTelat'])->name('laporan.telat');
 });
 
 require __DIR__.'/auth.php';

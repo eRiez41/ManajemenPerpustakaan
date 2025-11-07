@@ -83,9 +83,20 @@ class RakController extends Controller
      */
     public function destroy(string $id)
     {
-        $rak = Rak::findOrFail($id);
+        // 1. Cari data, 'withCount' untuk ngitung "anak"-nya (bukus)
+        $rak = Rak::withCount('bukus')->findOrFail($id);
+
+        // 2. CEK PENJAGA: Rak ini masih dipake di buku nggak?
+        if ($rak->bukus_count > 0) {
+            // Kalo masih ada, GAGALKAN HAPUS dan kirim pesan error
+            return redirect()->route('rak.index')
+                             ->with('error', 'Gagal! Rak ini masih digunakan oleh ' . $rak->bukus_count . ' buku.');
+        }
+
+        // 3. Kalo aman (bukus_count = 0), baru hapus
         $rak->delete();
 
+        // 4. Redirect ke halaman index dengan notifikasi sukses
         return redirect()->route('rak.index')->with('success', 'Rak berhasil dihapus!');
     }
 }

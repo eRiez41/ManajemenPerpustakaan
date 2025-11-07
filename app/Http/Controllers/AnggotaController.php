@@ -109,12 +109,17 @@ class AnggotaController extends Controller
      */
     public function destroy(string $id)
     {
-        $anggota = Anggota::findOrFail($id);
+        // 1. Cari data, 'withCount' untuk ngitung "anak"-nya (peminjamans)
+        $anggota = Anggota::withCount('peminjamans')->findOrFail($id);
         
-        // NANTI KITA TAMBAH LOGIKA:
-        // Cek dulu, kalo anggota ini masih punya pinjaman, jangan boleh dihapus.
-        // Untuk sekarang, kita hajar hapus aja dulu.
+        // 2. CEK PENJAGA: Anggota ini masih punya transaksi nggak?
+        if ($anggota->peminjamans_count > 0) {
+            // Kalo masih ada, GAGALKAN HAPUS
+            return redirect()->route('anggota.index')
+                             ->with('error', 'Gagal! Anggota ini sudah memiliki riwayat ' . $anggota->peminjamans_count . ' transaksi.');
+        }
         
+        // 3. Kalo aman, baru hapus
         $anggota->delete();
 
         return redirect()->route('anggota.index')->with('success', 'Anggota berhasil dihapus!');

@@ -39,10 +39,18 @@
                 </a>
 
                 {{-- Tombol Laporan Denda --}}
+                
                 <a href="{{ route('laporan.denda') }}" class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                     <i class="fa-solid fa-dollar-sign text-4xl text-blue-500 dark:text-blue-400 mb-3"></i>
                     <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Laporan Denda</h5>
                     <p class="font-normal text-gray-700 dark:text-gray-400">Total pemasukan denda dan rincian transaksinya.</p>
+                </a>
+                
+                {{-- Tombol Laporan Telat --}}
+                <a href="{{ route('laporan.telat') }}" class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fa-solid fa-clock-rotate-left text-4xl text-orange-500 dark:text-orange-400 mb-3"></i>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Laporan Telat</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">Daftar anggota yang telat mengembalikan buku.</p>
                 </a>
 
             </div>
