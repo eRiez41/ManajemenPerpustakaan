@@ -7,6 +7,7 @@ use App\Http\Controllers\RakController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\LaporanController;
 
 use App\Models\Buku;
 use App\Models\Kategori;
@@ -39,6 +40,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('buku', BukuController::class);
     Route::resource('anggota', AnggotaController::class);
     Route::resource('peminjaman', PeminjamanController::class);
+
+    // --- Rute untuk Laporan ---
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/buku', [LaporanController::class, 'laporanBuku'])->name('laporan.buku');
+    Route::get('/laporan/anggota', [LaporanController::class, 'laporanAnggota'])->name('laporan.anggota');
+    
+    // Laporan Tambahan
+    Route::get('/laporan/populer', [LaporanController::class, 'laporanPopuler'])->name('laporan.populer');
+    Route::get('/laporan/aktif', [LaporanController::class, 'laporanAktif'])->name('laporan.aktif');
+    Route::get('/laporan/denda', [LaporanController::class, 'laporanDenda'])->name('laporan.denda');
 });
 
 require __DIR__.'/auth.php';

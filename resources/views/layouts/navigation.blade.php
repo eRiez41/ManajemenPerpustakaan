@@ -1,6 +1,3 @@
-{{-- 
-  File ini SEKARANG adalah ISI DARI SIDEBAR 
---}}
 <div class="flex flex-col h-full">
     
     <div 
@@ -19,7 +16,6 @@
     </div>
     <nav class="flex-1 overflow-y-auto py-4 space-y-1">
         
-        {{-- Kita ubah styling x-nav-link agar jadi vertikal --}}
         <style>
             .sidebar-link {
                 display: flex;
@@ -68,12 +64,25 @@
                 opacity: 0;
                 display: none;
             }
+            
+            /* Class baru untuk styling dropdown laporan */
+            .sidebar-dropdown-trigger {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0.75rem 1rem; /* py-3 px-4 */
+                font-medium;
+                font-size: 0.875rem; /* text-sm */
+                transition: all 0.15s ease-in-out;
+            }
+            .sidebar-minimized .sidebar-dropdown-trigger {
+                justify-content: center;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
         </style>
 
-        {{-- 
-          Kita tambahin class dinamis :class="sidebarMinimized ? 'sidebar-minimized' : ''"
-          Ini adalah "parent" yang akan memicu style baru di atas
-        --}}
         <div :class="sidebarMinimized ? 'sidebar-minimized' : ''">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="sidebar-link dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" active-class="active dark:active">
                 <i class="fa-solid fa-gauge-high w-5 h-5 inline-block flex-shrink-0"></i>
@@ -104,6 +113,12 @@
                 <i class="fa-solid fa-arrow-right-arrow-left w-5 h-5 inline-block flex-shrink-0"></i>
                 <span class="ms-3 sidebar-text">{{ __('Peminjaman') }}</span>
             </x-nav-link>
+
+            <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.*')" class="sidebar-link dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" active-class="active dark:active">
+                <i class="fa-solid fa-chart-pie w-5 h-5 inline-block flex-shrink-0"></i>
+                <span class="ms-3 sidebar-text">{{ __('Laporan') }}</span>
+            </x-nav-link>
+
         </div>
     </nav>
     </div>
