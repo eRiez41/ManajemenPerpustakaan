@@ -54,12 +54,20 @@
                                         {{-- Ambil kode rak dari relasi --}}
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $buku->rak->kode_rak }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $buku->jumlah_stok }}</td>
+                                        {{-- KODE BARU DENGAN LINK DETAIL --}}
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="{{ route('buku.edit', $buku->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900">Edit</a>
+                                            {{-- 👇 LINK BARU 👇 --}}
+                                            <a href="{{ route('buku.show', $buku->id) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-900">
+                                                Detail
+                                            </a>
+
+                                            <a href="{{ route('buku.edit', $buku->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 ml-4"> {{-- <-- Tambah ml-4 --}}
+                                                Edit
+                                            </a>
                                             <form action="{{ route('buku.destroy', $buku->id) }}" method="POST" class="inline-block ml-4">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type"submit" class="text-red-600 dark:text-red-400 hover:text-red-900" onclick="return confirm('Yakin mau hapus buku ini?')">
+                                                <button type="submit" class="text-red-600 dark:text-red-400 hover:text-red-900" onclick="return confirm('Yakin mau hapus buku ini?')">
                                                     Hapus
                                                 </button>
                                             </form>

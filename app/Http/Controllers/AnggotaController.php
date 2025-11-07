@@ -50,7 +50,12 @@ class AnggotaController extends Controller
      */
     public function show(string $id)
     {
-        // Skip
+        // 1. Cari data anggota. Kita juga 'with' relasi peminjamans
+        //    biar nanti bisa nampilin riwayat pinjam.
+        $anggota = Anggota::with(['peminjamans'])->findOrFail($id);
+
+        // 2. Tampilkan halaman view baru, kirim datanya
+        return view('anggota.show', compact('anggota'));
     }
 
     /**

@@ -75,9 +75,13 @@ class BukuController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        // Kita skip ini
-    }
+{
+    // 1. Cari data buku, 'with' biar relasinya kebawa
+    $buku = Buku::with(['kategori', 'rak'])->findOrFail($id);
+
+    // 2. Tampilkan halaman view baru, kirim datanya
+    return view('buku.show', compact('buku'));
+}
 
     /**
      * Menampilkan form edit buku.

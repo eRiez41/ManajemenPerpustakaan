@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RakController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\PeminjamanController;
 
 use App\Models\Buku;
 use App\Models\Kategori;
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('rak', RakController::class);
     Route::resource('buku', BukuController::class);
     Route::resource('anggota', AnggotaController::class);
+    Route::resource('peminjaman', PeminjamanController::class);
 });
 
 require __DIR__.'/auth.php';

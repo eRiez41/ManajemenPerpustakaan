@@ -37,6 +37,11 @@
                         {{ __('Anggota') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('peminjaman.index')" :active="request()->routeIs('peminjaman.*')">
+                        <i class="fa-solid fa-arrow-right-arrow-left w-5 h-5 inline-block mr-2"></i>
+                        {{ __('Peminjaman') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 

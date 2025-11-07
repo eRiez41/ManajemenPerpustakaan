@@ -55,7 +55,14 @@
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="{{ route('anggota.edit', $anggota->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900">Edit</a>
+                                            {{-- 👇 LINK BARU 👇 --}}
+                                            <a href="{{ route('anggota.show', $anggota->id) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-900">
+                                                Detail
+                                            </a>
+
+                                            <a href="{{ route('anggota.edit', $anggota->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 ml-4"> {{-- <-- Tambah ml-4 --}}
+                                                Edit
+                                            </a>
                                             <form action="{{ route('anggota.destroy', $anggota->id) }}" method="POST" class="inline-block ml-4">
                                                 @csrf
                                                 @method('DELETE')
