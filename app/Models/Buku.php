@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-// --- INI YANG LENGKAP ---
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Buku extends Model
 {
@@ -42,5 +42,10 @@ class Buku extends Model
     public function rak(): BelongsTo
     {
         return $this->belongsTo(Rak::class);
+    }
+
+    public function peminjamans(): BelongsToMany
+    {
+        return $this->belongsToMany(Peminjaman::class, 'buku_peminjaman');
     }
 }
